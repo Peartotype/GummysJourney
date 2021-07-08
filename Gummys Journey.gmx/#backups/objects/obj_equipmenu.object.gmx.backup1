@@ -1,0 +1,88 @@
+// 2020-12-08 13:18:26
+#event properties (no comments/etc. here are saved)
+parent_index = -1;
+sprite_index = spr_menucontroller;
+uses_physics = false;
+
+#event create
+shipx = room_width/2;
+shipy = 167;
+
+info1x = 24;
+info1y = 64;
+info1text = "This is a test description for an equipment. 
+The double shot cannons provide twice the fire power and twice the fun.";
+
+//equip1x = 248;
+equip1x = shipx-48;
+equip1y = 64;
+
+info2x = room_width-24-208;
+info2y = 64;
+info2text = "The other text is better than me.#I'm far too sub-#conscience to be as good as him.";
+
+//equip2x = room_width-32-36-208;
+equip2x = shipx+48;
+equip2y = 64;
+
+
+#event draw
+
+//Score text
+draw_set_font(digitek);
+draw_set_halign(fa_center);
+draw_set_valign(fa_middle);
+draw_set_colour(c_green);
+draw_text(room_width/2, 24, "999999");
+
+//INFO BOX 1
+/*draw_set_alpha(0.25);
+scr_rect_col(info1x, info1y, info1x+208, info1y+243, c_green, false);
+draw_set_alpha(1);
+scr_rect_col(info1x, info1y, info1x+208, info1y+243, c_lime, true);*/
+scr_infobox(info1x, info1y, info1x+208, info1y+243, c_green, c_lime);
+
+//Equip box 1
+draw_set_alpha(0.25);
+scr_rect_col(equip1x, equip1y, equip1x+40, equip1y+40, c_green, false);
+draw_set_alpha(1);
+scr_rect_col(equip1x, equip1y, equip1x+40, equip1y+40, c_lime, true);
+draw_line_colour(equip1x-1, equip1y+18, equip1x-23, equip1y+18, c_lime, c_lime);
+live_call();
+draw_sprite(spr_loot_energy, 0, equip1x+20, equip1y+20);
+
+//Info box 1 text
+draw_set_font(debugfont);
+draw_set_color(c_white);
+draw_set_halign(fa_left);
+draw_set_valign(fa_top);
+txt1 = scr_wordwrap(info1text, 208, "#", true);
+draw_text(info1x+8, info1y+8, txt1);
+
+
+//INFO BOX 2
+draw_set_alpha(0.25);
+scr_rect_col(info2x, info2y, info2x+208, info2y+243, c_green, false);
+draw_set_alpha(1);
+scr_rect_col(info2x, info2y, info2x+208, info2y+243, c_lime, true);
+
+//Equip box 2
+draw_set_alpha(0.25);
+scr_rect_col(equip2x, equip2y, equip2x-40, equip2y+40, c_green, false);
+draw_set_alpha(1);
+scr_rect_col(equip2x, equip2y, equip2x-40, equip2y+40, c_lime, true);
+//draw_line_colour(equip2x+36, equip2y+18, equip2x+36+24, equip2y+18, c_lime, c_lime)
+draw_line_colour(equip2x, equip2y+18, equip2x+22, equip2y+18, c_lime, c_lime);
+
+
+//Info box 2 text
+draw_set_font(debugfont);
+draw_set_color(c_white);
+draw_set_halign(fa_left);
+draw_set_valign(fa_top);
+txt2 = scr_wordwrap(info2text, 208, "#", true);
+draw_text(info2x+8, info2y+8, txt2);
+
+
+//Ship sprite
+draw_sprite(spr_ship2, 0, room_width/2, (info1y+243)/2);
